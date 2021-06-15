@@ -10,11 +10,6 @@ fn all_args() -> Vec<Arg<'static, 'static>> {
 }
 
 fn main() {
-    let curr_dir = std::env::current_dir().unwrap();
-    let project = UE4Project::guess_from_dir(&curr_dir).unwrap();
-
-    let path = UE4PathFinder::new(project);
-
     let args = all_args();
     let matches = App::new("ue4-cli-rs")
         .version("0.1")
@@ -25,6 +20,10 @@ fn main() {
     if matches.args.is_empty() {
         println!("{}", matches.usage());
     }
+
+    let curr_dir = std::env::current_dir().unwrap();
+    let project = UE4Project::guess_from_dir(&curr_dir).unwrap();
+    let path = UE4PathFinder::new(project);
 
     if matches.is_present("getrootdir") {
         println!("{}", path.unwrap().engine_root.display());
