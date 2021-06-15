@@ -6,7 +6,7 @@ use ue4::{UE4PathFinder, UE4Project};
 fn all_args() -> Vec<Arg<'static, 'static>> {
     vec![Arg::with_name("getrootdir")
         .long("getrootdir")
-        .help("Gets the rootdir in plain text.")]
+        .help("Gets the UE rootdir in plain text. Based on an existing .uproject file in the current working directory.")]
 }
 
 fn main() {
